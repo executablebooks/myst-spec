@@ -4,7 +4,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: "foo\tbaz\t\tbim"
     myst: "\tfoo\tbaz\t\tbim\n"
     html: "<pre><code>foo\tbaz\t\tbim\n</code></pre>\n"
@@ -13,7 +14,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: "foo\tbaz\t\tbim"
     myst: "  \tfoo\tbaz\t\tbim\n"
     html: "<pre><code>foo\tbaz\t\tbim\n</code></pre>\n"
@@ -22,7 +24,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: "a\ta\nὐ\ta"
     myst: "    a\ta\n    ὐ\ta\n"
     html: "<pre><code>a\ta\nὐ\ta\n</code></pre>\n"
@@ -32,10 +35,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -59,17 +64,20 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: foo
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: '  bar'
     myst: "- foo\n\n\t\tbar\n"
     html: |-
@@ -87,7 +95,8 @@ cases:
         - type: blockquote
           children:
             - type: code
-              lang: ''
+              lang: null
+              meta: null
               value: '  foo'
     myst: ">\t\tfoo\n"
     html: |-
@@ -101,13 +110,16 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: '  foo'
     myst: "-\t\tfoo\n"
     html: |-
@@ -122,7 +134,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             foo
             bar
@@ -137,31 +150,43 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: bar
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: bar
                         - type: list
                           ordered: false
+                          start: null
                           spread: false
                           children:
                             - type: listItem
-                              spread: true
+                              spread: false
+                              checked: null
                               children:
-                                - type: text
-                                  value: baz
+                                - type: paragraph
+                                  children:
+                                    - type: text
+                                      value: baz
     myst: " - foo\n   - bar\n\t - baz\n"
     html: |-
       <ul>
@@ -304,7 +329,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: \[\]
     myst: |2
           \[\]
@@ -316,7 +342,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: \[\]
     myst: |
       ~~~
@@ -332,7 +359,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: http://example.com?find=%5C*
+              title: null
+              url: http://example.com?find=\*
               children:
                 - type: text
                   value: http://example.com?find=\*
@@ -358,8 +386,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /bar*
               title: ti*tle
+              url: /bar*
               children:
                 - type: text
                   value: foo
@@ -373,12 +401,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /bar*
-              title: ti*tle
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: ti*tle
+          url: /bar*
     myst: |
       [foo]
 
@@ -391,6 +425,7 @@ cases:
       children:
         - type: code
           lang: foo+bar
+          meta: null
           value: foo
     myst: |
       ``` foo\+bar
@@ -406,7 +441,7 @@ cases:
         - type: paragraph
           children:
             - type: text
-              value: "\u0020 & © Æ Ď\n¾ ℋ ⅆ\n∲ ≧̸"
+              value: "\_ & © Æ Ď\n¾ ℋ ⅆ\n∲ ≧̸"
     myst: |
       &nbsp; &amp; &copy; &AElig; &Dcaron;
       &frac34; &HilbertSpace; &DifferentialD;
@@ -502,8 +537,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /f%C3%B6%C3%B6
               title: föö
+              url: /föö
               children:
                 - type: text
                   value: foo
@@ -517,12 +552,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /f%C3%B6%C3%B6
-              title: föö
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: föö
+          url: /föö
     myst: |
       [foo]
 
@@ -535,6 +576,7 @@ cases:
       children:
         - type: code
           lang: föö
+          meta: null
           value: foo
     myst: |
       ``` f&ouml;&ouml;
@@ -560,7 +602,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: f&ouml;f&ouml;
     myst: |2
           f&ouml;f&ouml;
@@ -596,13 +639,17 @@ cases:
               value: '* foo'
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
     myst: |
       &#42; foo
 
@@ -658,18 +705,25 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: '`one'
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: '`one'
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: two`
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: two`
     myst: |
       - `one
       - two`
@@ -744,7 +798,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: '***'
     myst: |2
           ***
@@ -858,23 +913,31 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
         - type: thematicBreak
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
     myst: |
       - foo
       ***
@@ -934,23 +997,31 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: Foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: Foo
         - type: thematicBreak
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: Bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: Bar
     myst: |
       * Foo
       * * *
@@ -969,15 +1040,20 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: Foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: Foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: thematicBreak
     myst: |
@@ -1145,7 +1221,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: '# foo'
     myst: |2
           # foo
@@ -1471,7 +1548,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             Foo
             ---
@@ -1658,13 +1736,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: Foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: Foo
         - type: thematicBreak
     myst: |
       - Foo
@@ -1696,12 +1778,8 @@ cases:
     mdast:
       type: root
       children:
-        - type: thematicBreak
-        - type: heading
-          depth: 2
-          children:
-            - type: text
-              value: Foo
+        - type: yaml
+          value: Foo
         - type: heading
           depth: 2
           children:
@@ -1740,8 +1818,8 @@ cases:
     mdast:
       type: root
       children:
-        - type: thematicBreak
-        - type: thematicBreak
+        - type: yaml
+          value: ''
     myst: |
       ---
       ---
@@ -1754,13 +1832,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
         - type: thematicBreak
     myst: |
       - foo
@@ -1775,7 +1857,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: foo
         - type: thematicBreak
     myst: |2
@@ -1924,7 +2007,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             a simple
               indented code block
@@ -1941,10 +2025,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -1976,6 +2062,7 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -1983,13 +2070,17 @@ cases:
                       value: foo
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: bar
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: bar
     myst: |
       1.  foo
 
@@ -2008,7 +2099,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             <a/>
             *hi*
@@ -2030,7 +2122,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             chunk1
 
@@ -2061,7 +2154,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             chunk1
               
@@ -2097,7 +2191,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: foo
         - type: paragraph
           children:
@@ -2120,7 +2215,8 @@ cases:
             - type: text
               value: Heading
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: foo
         - type: heading
           depth: 2
@@ -2128,7 +2224,8 @@ cases:
             - type: text
               value: Heading
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: foo
         - type: thematicBreak
     myst: |
@@ -2151,7 +2248,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |2-
                 foo
             bar
@@ -2167,7 +2265,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: foo
     myst: |2+
 
@@ -2183,7 +2282,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: 'foo  '
     myst: '    foo  '
     html: |-
@@ -2194,7 +2294,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             <
              >
@@ -2212,7 +2313,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             <
              >
@@ -2244,7 +2346,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
             ~~~
@@ -2262,7 +2365,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
             ```
@@ -2280,7 +2384,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
             ```
@@ -2298,7 +2403,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
             ~~~
@@ -2316,7 +2422,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: ''
     myst: |
       ```
@@ -2327,7 +2434,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
 
             ```
@@ -2349,7 +2457,8 @@ cases:
         - type: blockquote
           children:
             - type: code
-              lang: ''
+              lang: null
+              meta: null
               value: aaa
         - type: paragraph
           children:
@@ -2371,9 +2480,11 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
-          value: "\n  "
+          lang: null
+          meta: null
+          value: |2-
 
+              
     myst: |
       ```
 
@@ -2388,7 +2499,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: ''
     myst: |
       ```
@@ -2400,7 +2512,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
             aaa
@@ -2418,7 +2531,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
             aaa
@@ -2439,7 +2553,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
              aaa
@@ -2460,7 +2575,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             ```
             aaa
@@ -2479,7 +2595,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: aaa
     myst: |
       ```
@@ -2493,7 +2610,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: aaa
     myst: |2
          ```
@@ -2507,7 +2625,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
                 ```
@@ -2542,7 +2661,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             aaa
             ~~~ ~~
@@ -2563,7 +2683,8 @@ cases:
             - type: text
               value: foo
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: bar
         - type: paragraph
           children:
@@ -2590,7 +2711,8 @@ cases:
             - type: text
               value: foo
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: bar
         - type: heading
           depth: 1
@@ -2615,6 +2737,7 @@ cases:
       children:
         - type: code
           lang: ruby
+          meta: null
           value: |-
             def foo(x)
               return 3
@@ -2636,6 +2759,7 @@ cases:
       children:
         - type: code
           lang: ruby
+          meta: startline=3 $%@#$
           value: |-
             def foo(x)
               return 3
@@ -2657,6 +2781,7 @@ cases:
       children:
         - type: code
           lang: ;
+          meta: null
           value: ''
     myst: |
       ````;
@@ -2687,6 +2812,7 @@ cases:
       children:
         - type: code
           lang: aa
+          meta: '``` ~~~'
           value: foo
     myst: |
       ~~~ aa ``` ~~~
@@ -2700,7 +2826,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: '``` aaa'
     myst: |
       ```
@@ -2795,7 +2922,7 @@ cases:
        <div>
         *hello*
                <foo><a>
-    html: |2-
+    html: |-2
        <div>
         *hello*
                <foo><a>
@@ -3234,7 +3361,7 @@ cases:
       type: root
       children:
         - type: html
-          value: |-
+          value: |
             <style
               type="text/css">
 
@@ -3280,18 +3407,23 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: html
                   value: <div>
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
     myst: |
       - <div>
       - foo
@@ -3477,13 +3609,14 @@ cases:
         - type: html
           value: '  <!-- foo -->'
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: <!-- foo -->
     myst: |2
         <!-- foo -->
 
           <!-- foo -->
-    html: |2-
+    html: |-2
         <!-- foo -->
       <pre><code>&lt;!-- foo --&gt;
       </code></pre>
@@ -3494,13 +3627,14 @@ cases:
         - type: html
           value: '  <div>'
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: <div>
     myst: |2
         <div>
 
           <div>
-    html: |2-
+    html: |-2
         <div>
       <pre><code>&lt;div&gt;
       </code></pre>
@@ -3659,7 +3793,8 @@ cases:
         - type: html
           value: '  <tr>'
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             <td>
               Hi
@@ -3693,14 +3828,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [foo]: /url "title"
 
@@ -3711,14 +3852,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: the title
+          url: /url
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: the title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |2
          [foo]: 
             /url  
@@ -3731,14 +3878,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo*bar\]
+          label: Foo*bar]
+          title: title (with parens)
+          url: my_(url)
         - type: paragraph
           children:
-            - type: link
-              url: my_(url)
-              title: title (with parens)
+            - type: linkReference
               children:
                 - type: text
                   value: Foo*bar]
+              label: Foo*bar]
+              identifier: foo*bar\]
+              referenceType: shortcut
     myst: |
       [Foo*bar\]]:my_(url) 'title (with parens)'
 
@@ -3749,14 +3902,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo bar
+          label: Foo bar
+          title: title
+          url: my url
         - type: paragraph
           children:
-            - type: link
-              url: my%20url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: Foo bar
+              label: Foo bar
+              identifier: foo bar
+              referenceType: shortcut
     myst: |
       [Foo bar]:
       <my url>
@@ -3769,18 +3928,24 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: |
+
+            title
+            line1
+            line2
+          url: /url
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: |
-
-                title
-                line1
-                line2
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [foo]: /url '
       title
@@ -3802,7 +3967,7 @@ cases:
         - type: paragraph
           children:
             - type: text
-              value: "[foo]: /url 'title"
+              value: '[foo]: /url ''title'
         - type: paragraph
           children:
             - type: text
@@ -3825,13 +3990,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
         - type: paragraph
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [foo]:
       /url
@@ -3862,13 +4034,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: ''
         - type: paragraph
           children:
-            - type: link
-              url: ''
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [foo]: <>
 
@@ -3902,14 +4081,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: foo"bar\baz
+          url: /url\bar*baz
         - type: paragraph
           children:
-            - type: link
-              url: /url%5Cbar*baz
-              title: foo"bar\baz
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [foo]: /url\bar\*baz "foo\"bar\baz"
 
@@ -3922,11 +4107,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: url
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: url
     myst: |
       [foo]
 
@@ -3939,11 +4131,23 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: first
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: first
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: second
     myst: |
       [foo]
 
@@ -3955,13 +4159,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: FOO
+          title: null
+          url: /url
         - type: paragraph
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: Foo
+              label: Foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [FOO]: /url
 
@@ -3972,13 +4183,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: αγω
+          label: ΑΓΩ
+          title: null
+          url: /φου
         - type: paragraph
           children:
-            - type: link
-              url: /%CF%86%CE%BF%CF%85
+            - type: linkReference
               children:
                 - type: text
                   value: αγω
+              label: αγω
+              identifier: αγω
+              referenceType: shortcut
     myst: |
       [ΑΓΩ]: /φου
 
@@ -3988,7 +4206,12 @@ cases:
   - title: Link reference definitions - example 207
     mdast:
       type: root
-      children: []
+      children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
     myst: |
       [foo]: /url
     html: ''
@@ -3996,6 +4219,13 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: |
+
+            foo
+          title: null
+          url: /url
         - type: paragraph
           children:
             - type: text
@@ -4023,6 +4253,11 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
         - type: paragraph
           children:
             - type: text
@@ -4037,7 +4272,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: '[foo]: /url "title"'
         - type: paragraph
           children:
@@ -4056,7 +4292,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: '[foo]: /url'
         - type: paragraph
           children:
@@ -4102,11 +4339,18 @@ cases:
         - type: heading
           depth: 1
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: Foo
+              label: Foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
         - type: blockquote
           children:
             - type: paragraph
@@ -4126,6 +4370,11 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
         - type: heading
           depth: 1
           children:
@@ -4133,11 +4382,13 @@ cases:
               value: bar
         - type: paragraph
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [foo]: /url
       bar
@@ -4150,16 +4401,23 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
         - type: paragraph
           children:
             - type: text
               value: |
                 ===
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
     myst: |
       [foo]: /url
       ===
@@ -4171,31 +4429,50 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: foo
+          url: /foo-url
+        - type: definition
+          identifier: bar
+          label: bar
+          title: bar
+          url: /bar-url
+        - type: definition
+          identifier: baz
+          label: baz
+          title: null
+          url: /baz-url
         - type: paragraph
           children:
-            - type: link
-              url: /foo-url
-              title: foo
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
             - type: text
               value: |
                 ,
-            - type: link
-              url: /bar-url
-              title: bar
+            - type: linkReference
               children:
                 - type: text
                   value: bar
+              label: bar
+              identifier: bar
+              referenceType: shortcut
             - type: text
               value: |
                 ,
-            - type: link
-              url: /baz-url
+            - type: linkReference
               children:
                 - type: text
                   value: baz
+              label: baz
+              identifier: baz
+              referenceType: shortcut
     myst: |
       [foo]: /foo-url "foo"
       [bar]: /bar-url
@@ -4215,13 +4492,20 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
         - type: blockquote
-          children: []
+          children:
+            - type: definition
+              identifier: foo
+              label: foo
+              title: null
+              url: /url
     myst: |
       [foo]
 
@@ -4352,7 +4636,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: aaa
         - type: paragraph
           children:
@@ -4402,7 +4687,6 @@ cases:
         
 
       # aaa
-
     html: |-
       <p>aaa</p>
       <h1>aaa</h1>
@@ -4492,7 +4776,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             > # Foo
             > bar
@@ -4583,22 +4868,30 @@ cases:
           children:
             - type: list
               ordered: false
+              start: null
               spread: false
               children:
                 - type: listItem
-                  spread: true
+                  spread: false
+                  checked: null
                   children:
-                    - type: text
-                      value: foo
+                    - type: paragraph
+                      children:
+                        - type: text
+                          value: foo
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
     myst: |
       > - foo
       - bar
@@ -4618,10 +4911,12 @@ cases:
         - type: blockquote
           children:
             - type: code
-              lang: ''
+              lang: null
+              meta: null
               value: foo
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: bar
     myst: |
       >     foo
@@ -4640,14 +4935,16 @@ cases:
         - type: blockquote
           children:
             - type: code
-              lang: ''
+              lang: null
+              meta: null
               value: ''
         - type: paragraph
           children:
             - type: text
               value: foo
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: ''
     myst: |
       > ```
@@ -4974,7 +5271,8 @@ cases:
         - type: blockquote
           children:
             - type: code
-              lang: ''
+              lang: null
+              meta: null
               value: code
         - type: blockquote
           children:
@@ -5005,7 +5303,8 @@ cases:
                 A paragraph
                 with two lines.
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: indented code
         - type: blockquote
           children:
@@ -5039,6 +5338,7 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -5047,7 +5347,8 @@ cases:
                         A paragraph
                         with two lines.
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: indented code
                 - type: blockquote
                   children:
@@ -5080,13 +5381,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: one
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: one
         - type: paragraph
           children:
             - type: text
@@ -5106,10 +5411,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -5136,15 +5443,20 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: one
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: one
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: ' two'
     myst: |2
        -    one
@@ -5162,10 +5474,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -5201,6 +5515,7 @@ cases:
                   children:
                     - type: listItem
                       spread: true
+                      checked: null
                       children:
                         - type: paragraph
                           children:
@@ -5235,13 +5550,17 @@ cases:
               children:
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: one
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: one
                 - type: paragraph
                   children:
                     - type: text
@@ -5284,10 +5603,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -5320,13 +5641,15 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: foo
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: bar
                 - type: paragraph
                   children:
@@ -5366,17 +5689,20 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: Foo
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: |-
                     bar
 
@@ -5410,10 +5736,13 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: ok
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: ok
     myst: |
       123456789. ok
     html: |-
@@ -5442,10 +5771,13 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: ok
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: ok
     myst: |
       0. ok
     html: |-
@@ -5462,10 +5794,13 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: ok
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: ok
     myst: |
       003. ok
     html: |-
@@ -5490,17 +5825,20 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: foo
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: bar
     myst: |
       - foo
@@ -5525,13 +5863,15 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: foo
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: bar
     myst: |2
         10.  foo
@@ -5550,14 +5890,16 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: indented code
         - type: paragraph
           children:
             - type: text
               value: paragraph
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: more code
     myst: |2
           indented code
@@ -5582,16 +5924,19 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: indented code
                 - type: paragraph
                   children:
                     - type: text
                       value: paragraph
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: more code
     myst: |
       1.     indented code
@@ -5620,16 +5965,19 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: ' indented code'
                 - type: paragraph
                   children:
                     - type: text
                       value: paragraph
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: more code
     myst: |
       1.      indented code
@@ -5672,13 +6020,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
         - type: paragraph
           children:
             - type: text
@@ -5698,10 +6050,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -5728,24 +6082,32 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: bar
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: baz
     myst: |
       -
@@ -5774,13 +6136,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
     myst: |
       -   
         foo
@@ -5794,10 +6160,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children: []
         - type: paragraph
           children:
@@ -5818,21 +6186,29 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children: []
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
     myst: |
       - foo
       -
@@ -5849,21 +6225,29 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children: []
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
     myst: |
       - foo
       -   
@@ -5884,18 +6268,25 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children: []
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
     myst: |
       1. foo
       2.
@@ -5912,10 +6303,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children: []
     myst: |
       *
@@ -5961,6 +6354,7 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -5969,7 +6363,8 @@ cases:
                         A paragraph
                         with two lines.
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: indented code
                 - type: blockquote
                   children:
@@ -6007,6 +6402,7 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -6015,7 +6411,8 @@ cases:
                         A paragraph
                         with two lines.
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: indented code
                 - type: blockquote
                   children:
@@ -6053,6 +6450,7 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -6061,7 +6459,8 @@ cases:
                         A paragraph
                         with two lines.
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: indented code
                 - type: blockquote
                   children:
@@ -6093,7 +6492,8 @@ cases:
       type: root
       children:
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: |-
             1.  A paragraph
                 with two lines.
@@ -6127,6 +6527,7 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -6135,7 +6536,8 @@ cases:
                         A paragraph
                         with two lines.
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: indented code
                 - type: blockquote
                   children:
@@ -6172,12 +6574,15 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: |-
-                    A paragraph
-                    with two lines.
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: |-
+                        A paragraph
+                        with two lines.
     myst: |2
         1.  A paragraph
           with two lines.
@@ -6198,7 +6603,8 @@ cases:
               spread: false
               children:
                 - type: listItem
-                  spread: true
+                  spread: false
+                  checked: null
                   children:
                     - type: blockquote
                       children:
@@ -6234,7 +6640,8 @@ cases:
               spread: false
               children:
                 - type: listItem
-                  spread: true
+                  spread: false
+                  checked: null
                   children:
                     - type: blockquote
                       children:
@@ -6264,40 +6671,56 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: bar
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: bar
                         - type: list
                           ordered: false
+                          start: null
                           spread: false
                           children:
                             - type: listItem
-                              spread: true
+                              spread: false
+                              checked: null
                               children:
-                                - type: text
-                                  value: baz
+                                - type: paragraph
+                                  children:
+                                    - type: text
+                                      value: baz
                                 - type: list
                                   ordered: false
+                                  start: null
                                   spread: false
                                   children:
                                     - type: listItem
-                                      spread: true
+                                      spread: false
+                                      checked: null
                                       children:
-                                        - type: text
-                                          value: boo
+                                        - type: paragraph
+                                          children:
+                                            - type: text
+                                              value: boo
     myst: |
       - foo
         - bar
@@ -6325,28 +6748,41 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: baz
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: baz
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: boo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: boo
     myst: |
       - foo
        - bar
@@ -6369,19 +6805,26 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: bar
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: bar
     myst: |
       10) foo
           - bar
@@ -6403,19 +6846,26 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
     myst: |
       10) foo
          - bar
@@ -6432,20 +6882,26 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: foo
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: foo
     myst: |
       - - foo
     html: |-
@@ -6466,14 +6922,17 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
                         - type: list
                           ordered: true
@@ -6481,10 +6940,13 @@ cases:
                           spread: false
                           children:
                             - type: listItem
-                              spread: true
+                              spread: false
+                              checked: null
                               children:
-                                - type: text
-                                  value: foo
+                                - type: paragraph
+                                  children:
+                                    - type: text
+                                      value: foo
     myst: |
       1. - 2. foo
     html: |-
@@ -6505,10 +6967,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: heading
                   depth: 1
@@ -6516,15 +6980,18 @@ cases:
                     - type: text
                       value: Foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: heading
                   depth: 2
                   children:
                     - type: text
                       value: Bar
-                - type: text
-                  value: baz
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: baz
     myst: |
       - # Foo
       - Bar
@@ -6545,27 +7012,38 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: baz
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: baz
     myst: |
       - foo
       - bar
@@ -6588,25 +7066,34 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
         - type: list
           ordered: true
           start: 3
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: baz
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: baz
     myst: |
       1. foo
       2. bar
@@ -6629,18 +7116,25 @@ cases:
               value: Foo
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: baz
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: baz
     myst: |
       Foo
       - bar
@@ -6681,10 +7175,13 @@ cases:
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: The number of doors is 6.
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: The number of doors is 6.
     myst: |
       The number of windows in my house is
       1.  The number of doors is 6.
@@ -6699,24 +7196,28 @@ cases:
       children:
         - type: list
           ordered: false
-          spread: false
+          start: null
+          spread: true
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: bar
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -6747,28 +7248,38 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: bar
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: bar
                         - type: list
                           ordered: false
+                          start: null
                           spread: false
                           children:
                             - type: listItem
                               spread: true
+                              checked: null
                               children:
                                 - type: paragraph
                                   children:
@@ -6806,34 +7317,48 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: foo
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: foo
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bar
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bar
         - type: html
           value: <!-- -->
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: baz
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: baz
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: bim
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: bim
     myst: |
       - foo
       - bar
@@ -6858,10 +7383,12 @@ cases:
       children:
         - type: list
           ordered: false
-          spread: false
+          start: null
+          spread: true
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -6872,7 +7399,8 @@ cases:
                     - type: text
                       value: notcode
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -6881,7 +7409,8 @@ cases:
         - type: html
           value: <!-- -->
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: code
     myst: |
       -   foo
@@ -6912,43 +7441,65 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: b
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: b
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: c
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: c
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: d
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: d
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: e
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: e
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: f
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: f
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: g
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: g
     myst: |
       - a
        - b
@@ -6974,24 +7525,27 @@ cases:
         - type: list
           ordered: true
           start: 1
-          spread: false
+          spread: true
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: a
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: b
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7021,30 +7575,43 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: b
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: b
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: c
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: c
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: |-
-                    d
-                    - e
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: |-
+                        d
+                        - e
     myst: |
       - a
        - b
@@ -7066,24 +7633,27 @@ cases:
         - type: list
           ordered: true
           start: 1
-          spread: false
+          spread: true
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: a
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: b
         - type: code
-          lang: ''
+          lang: null
+          meta: null
           value: 3. c
     myst: |
       1. a
@@ -7108,24 +7678,28 @@ cases:
       children:
         - type: list
           ordered: false
-          spread: false
+          start: null
+          spread: true
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: a
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: b
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7154,20 +7728,24 @@ cases:
       children:
         - type: list
           ordered: false
-          spread: false
+          start: null
+          spread: true
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: a
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children: []
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7194,10 +7772,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7205,6 +7785,7 @@ cases:
                       value: a
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7215,7 +7796,8 @@ cases:
                     - type: text
                       value: c
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7246,10 +7828,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7257,13 +7841,20 @@ cases:
                       value: a
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
                     - type: text
                       value: b
+                - type: definition
+                  identifier: ref
+                  label: ref
+                  title: null
+                  url: /url
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7293,26 +7884,35 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: |+
                     b
 
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: c
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: c
     myst: |
       - a
       - ```
@@ -7338,19 +7938,25 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
                       spread: true
+                      checked: null
                       children:
                         - type: paragraph
                           children:
@@ -7361,10 +7967,13 @@ cases:
                             - type: text
                               value: c
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: d
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: d
     myst: |
       - a
         - b
@@ -7389,13 +7998,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
                 - type: blockquote
                   children:
                     - type: paragraph
@@ -7403,10 +8016,13 @@ cases:
                         - type: text
                           value: b
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: c
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: c
     myst: |
       * a
         > b
@@ -7427,13 +8043,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
                 - type: blockquote
                   children:
                     - type: paragraph
@@ -7441,13 +8061,17 @@ cases:
                         - type: text
                           value: b
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: c
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: d
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: d
     myst: |
       - a
         > b
@@ -7472,13 +8096,17 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
     myst: |
       - a
     html: |-
@@ -7491,22 +8119,30 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
-                - type: text
-                  value: a
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: b
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: b
     myst: |
       - a
         - b
@@ -7529,9 +8165,11 @@ cases:
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: code
-                  lang: ''
+                  lang: null
+                  meta: null
                   value: foo
                 - type: paragraph
                   children:
@@ -7557,10 +8195,12 @@ cases:
       children:
         - type: list
           ordered: false
+          start: null
           spread: false
           children:
             - type: listItem
               spread: true
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7568,13 +8208,17 @@ cases:
                       value: foo
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: bar
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: bar
                 - type: paragraph
                   children:
                     - type: text
@@ -7600,10 +8244,12 @@ cases:
       children:
         - type: list
           ordered: false
-          spread: false
+          start: null
+          spread: true
           children:
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7611,20 +8257,28 @@ cases:
                       value: a
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: b
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: b
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: c
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: c
             - type: listItem
-              spread: true
+              spread: false
+              checked: null
               children:
                 - type: paragraph
                   children:
@@ -7632,18 +8286,25 @@ cases:
                       value: d
                 - type: list
                   ordered: false
+                  start: null
                   spread: false
                   children:
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: e
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: e
                     - type: listItem
-                      spread: true
+                      spread: false
+                      checked: null
                       children:
-                        - type: text
-                          value: f
+                        - type: paragraph
+                          children:
+                            - type: text
+                              value: f
     myst: |
       - a
         - b
@@ -7750,7 +8411,7 @@ cases:
         - type: paragraph
           children:
             - type: inlineCode
-              value: ' b '
+              value: b
     myst: |
       ` b `
     html: |-
@@ -7781,7 +8442,10 @@ cases:
         - type: paragraph
           children:
             - type: inlineCode
-              value: foo bar   baz
+              value: |-
+                foo
+                bar  
+                baz
     myst: |
       ``
       foo
@@ -7811,7 +8475,9 @@ cases:
         - type: paragraph
           children:
             - type: inlineCode
-              value: foo   bar  baz
+              value: |-
+                foo   bar 
+                baz
     myst: |
       `foo   bar 
       baz`
@@ -7934,7 +8600,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: http://foo.bar.%60baz
+              title: null
+              url: http://foo.bar.`baz
               children:
                 - type: text
                   value: http://foo.bar.`baz
@@ -8024,10 +8691,19 @@ cases:
     mdast:
       type: root
       children:
-        - type: paragraph
+        - type: list
+          ordered: false
+          start: null
+          spread: false
           children:
-            - type: text
-              value: '* a *'
+            - type: listItem
+              spread: false
+              checked: null
+              children:
+                - type: paragraph
+                  children:
+                    - type: text
+                      value: a *
     myst: |
       * a *
     html: |-
@@ -8752,6 +9428,7 @@ cases:
                 - type: text
                   value: 'foo '
                 - type: link
+                  title: null
                   url: /url
                   children:
                     - type: text
@@ -9041,6 +9718,7 @@ cases:
                 - type: text
                   value: 'foo '
                 - type: link
+                  title: null
                   url: /url
                   children:
                     - type: emphasis
@@ -9086,6 +9764,7 @@ cases:
                 - type: text
                   value: 'foo '
                 - type: link
+                  title: null
                   url: /url
                   children:
                     - type: text
@@ -9305,6 +9984,7 @@ cases:
                 - type: text
                   value: 'foo '
                 - type: link
+                  title: null
                   url: /url
                   children:
                     - type: emphasis
@@ -9928,6 +10608,7 @@ cases:
             - type: text
               value: '*'
             - type: link
+              title: null
               url: /url
               children:
                 - type: text
@@ -9945,6 +10626,7 @@ cases:
             - type: text
               value: '_foo '
             - type: link
+              title: null
               url: /url
               children:
                 - type: text
@@ -10036,6 +10718,7 @@ cases:
             - type: text
               value: '**a'
             - type: link
+              title: null
               url: http://foo.bar/?q=**
               children:
                 - type: text
@@ -10053,6 +10736,7 @@ cases:
             - type: text
               value: __a
             - type: link
+              title: null
               url: http://foo.bar/?q=__
               children:
                 - type: text
@@ -10068,8 +10752,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /uri
               title: title
+              url: /uri
               children:
                 - type: text
                   value: link
@@ -10084,6 +10768,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
@@ -10099,6 +10784,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: ./target.md
               children: []
     myst: |
@@ -10112,6 +10798,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: ''
               children:
                 - type: text
@@ -10127,6 +10814,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: ''
               children:
                 - type: text
@@ -10142,6 +10830,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: ''
               children: []
     myst: |
@@ -10167,7 +10856,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /my%20uri
+              title: null
+              url: /my uri
               children:
                 - type: text
                   value: link
@@ -10218,6 +10908,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: b)c
               children:
                 - type: text
@@ -10268,6 +10959,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: (foo)
               children:
                 - type: text
@@ -10283,6 +10975,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: foo(and(bar))
               children:
                 - type: text
@@ -10310,6 +11003,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: foo(and(bar)
               children:
                 - type: text
@@ -10325,6 +11019,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: foo(and(bar)
               children:
                 - type: text
@@ -10340,6 +11035,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: 'foo):'
               children:
                 - type: text
@@ -10355,6 +11051,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: '#fragment'
               children:
                 - type: text
@@ -10362,6 +11059,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: http://example.com#fragment
               children:
                 - type: text
@@ -10369,6 +11067,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: http://example.com?foo=3#frag
               children:
                 - type: text
@@ -10390,7 +11089,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: foo%5Cbar
+              title: null
+              url: foo\bar
               children:
                 - type: text
                   value: link
@@ -10405,7 +11105,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: foo%20b%C3%A4
+              title: null
+              url: foo%20bä
               children:
                 - type: text
                   value: link
@@ -10420,7 +11121,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: '%22title%22'
+              title: null
+              url: '"title"'
               children:
                 - type: text
                   value: link
@@ -10435,8 +11137,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /url
               title: title
+              url: /url
               children:
                 - type: text
                   value: link
@@ -10444,8 +11146,8 @@ cases:
               value: |+
 
             - type: link
-              url: /url
               title: title
+              url: /url
               children:
                 - type: text
                   value: link
@@ -10453,8 +11155,8 @@ cases:
               value: |+
 
             - type: link
-              url: /url
               title: title
+              url: /url
               children:
                 - type: text
                   value: link
@@ -10473,8 +11175,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /url
               title: title ""
+              url: /url
               children:
                 - type: text
                   value: link
@@ -10489,7 +11191,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: "/url\u00A0\"title\""
+              title: title
+              url: /url
               children:
                 - type: text
                   value: link
@@ -10516,8 +11219,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /url
               title: title "and" title
+              url: /url
               children:
                 - type: text
                   value: link
@@ -10532,8 +11235,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: /uri
               title: title
+              url: /uri
               children:
                 - type: text
                   value: link
@@ -10561,6 +11264,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
@@ -10590,6 +11294,7 @@ cases:
             - type: text
               value: '[link '
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
@@ -10605,6 +11310,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
@@ -10620,6 +11326,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
@@ -10648,9 +11355,11 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: /uri
               children:
                 - type: image
+                  title: null
                   url: moon.jpg
                   alt: moon
     myst: |
@@ -10666,6 +11375,7 @@ cases:
             - type: text
               value: '[foo '
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
@@ -10689,6 +11399,7 @@ cases:
                 - type: text
                   value: '[bar '
                 - type: link
+                  title: null
                   url: /uri
                   children:
                     - type: text
@@ -10708,6 +11419,7 @@ cases:
         - type: paragraph
           children:
             - type: image
+              title: null
               url: uri3
               alt: '[foo](uri2)'
     myst: |
@@ -10723,6 +11435,7 @@ cases:
             - type: text
               value: '*'
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
@@ -10738,6 +11451,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: baz*
               children:
                 - type: text
@@ -10799,7 +11513,8 @@ cases:
             - type: text
               value: '[foo'
             - type: link
-              url: http://example.com/?search=%5D(uri)
+              title: null
+              url: http://example.com/?search=](uri)
               children:
                 - type: text
                   value: http://example.com/?search=](uri)
@@ -10814,12 +11529,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: bar
+              identifier: bar
+              referenceType: full
+        - type: definition
+          identifier: bar
+          label: bar
+          title: title
+          url: /url
     myst: |
       [foo][bar]
 
@@ -10832,11 +11553,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: link [foo [bar]]
+              label: ref
+              identifier: ref
+              referenceType: full
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [link [foo [bar]]][ref]
 
@@ -10849,11 +11577,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: link [bar
+              label: ref
+              identifier: ref
+              referenceType: full
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [link \[bar][ref]
 
@@ -10866,8 +11601,7 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: 'link '
@@ -10883,6 +11617,14 @@ cases:
                       value: ' '
                     - type: inlineCode
                       value: '#'
+              label: ref
+              identifier: ref
+              referenceType: full
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [link *foo **bar** `#`*][ref]
 
@@ -10896,12 +11638,20 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: image
+                  title: null
                   url: moon.jpg
                   alt: moon
+              label: ref
+              identifier: ref
+              referenceType: full
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [![moon](moon.jpg)][ref]
 
@@ -10917,17 +11667,25 @@ cases:
             - type: text
               value: '[foo '
             - type: link
+              title: null
               url: /uri
               children:
                 - type: text
                   value: bar
             - type: text
               value: ']'
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: ref
+              label: ref
+              identifier: ref
+              referenceType: shortcut
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [foo [bar](/uri)][ref]
 
@@ -10946,18 +11704,27 @@ cases:
               children:
                 - type: text
                   value: 'bar '
-                - type: link
-                  url: /uri
+                - type: linkReference
                   children:
                     - type: text
                       value: baz
+                  label: ref
+                  identifier: ref
+                  referenceType: full
             - type: text
               value: ']'
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: ref
+              label: ref
+              identifier: ref
+              referenceType: shortcut
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [foo *bar [baz][ref]*][ref]
 
@@ -10972,11 +11739,18 @@ cases:
           children:
             - type: text
               value: '*'
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: foo*
+              label: ref
+              identifier: ref
+              referenceType: full
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       *[foo*][ref]
 
@@ -10989,13 +11763,20 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: foo *bar
+              label: ref
+              identifier: ref
+              referenceType: full
             - type: text
               value: '*'
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [foo *bar][ref]*
 
@@ -11012,6 +11793,11 @@ cases:
               value: '[foo '
             - type: html
               value: <bar attr="][ref]">
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [foo <bar attr="][ref]">
 
@@ -11028,6 +11814,11 @@ cases:
               value: '[foo'
             - type: inlineCode
               value: '][ref]'
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [foo`][ref]`
 
@@ -11043,10 +11834,16 @@ cases:
             - type: text
               value: '[foo'
             - type: link
-              url: http://example.com/?search=%5D%5Bref%5D
+              title: null
+              url: http://example.com/?search=][ref]
               children:
                 - type: text
                   value: http://example.com/?search=][ref]
+        - type: definition
+          identifier: ref
+          label: ref
+          title: null
+          url: /uri
     myst: |
       [foo<http://example.com/?search=][ref]>
 
@@ -11060,12 +11857,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: BaR
+              identifier: bar
+              referenceType: full
+        - type: definition
+          identifier: bar
+          label: bar
+          title: title
+          url: /url
     myst: |
       [foo][BaR]
 
@@ -11078,11 +11881,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: ẞ
+              label: ẞ
+              identifier: ss
+              referenceType: shortcut
+        - type: definition
+          identifier: ss
+          label: SS
+          title: null
+          url: /url
     myst: |
       [ẞ]
 
@@ -11093,13 +11903,22 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo bar
+          label: |-
+            Foo
+              bar
+          title: null
+          url: /url
         - type: paragraph
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: Baz
+              label: Foo bar
+              identifier: foo bar
+              referenceType: full
     myst: |
       [Foo
         bar]: /url
@@ -11115,12 +11934,18 @@ cases:
           children:
             - type: text
               value: '[foo] '
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: bar
+              label: bar
+              identifier: bar
+              referenceType: shortcut
+        - type: definition
+          identifier: bar
+          label: bar
+          title: title
+          url: /url
     myst: |
       [foo] [bar]
 
@@ -11136,12 +11961,18 @@ cases:
             - type: text
               value: |
                 [foo]
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: bar
+              label: bar
+              identifier: bar
+              referenceType: shortcut
+        - type: definition
+          identifier: bar
+          label: bar
+          title: title
+          url: /url
     myst: |
       [foo]
       [bar]
@@ -11154,13 +11985,25 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url1
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url2
         - type: paragraph
           children:
-            - type: link
-              url: /url1
+            - type: linkReference
               children:
                 - type: text
                   value: bar
+              label: foo
+              identifier: foo
+              referenceType: full
     myst: |
       [foo]: /url1
 
@@ -11177,6 +12020,11 @@ cases:
           children:
             - type: text
               value: '[bar][foo!]'
+        - type: definition
+          identifier: foo!
+          label: foo!
+          title: null
+          url: /url
     myst: |
       [bar][foo\!]
 
@@ -11246,11 +12094,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: ref[
+              identifier: ref\[
+              referenceType: full
+        - type: definition
+          identifier: ref\[
+          label: ref[
+          title: null
+          url: /uri
     myst: |
       [foo][ref\[]
 
@@ -11261,13 +12116,20 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: bar\\
+          label: bar\
+          title: null
+          url: /uri
         - type: paragraph
           children:
-            - type: link
-              url: /uri
+            - type: linkReference
               children:
                 - type: text
                   value: bar\
+              label: bar\
+              identifier: bar\\
+              referenceType: shortcut
     myst: |
       [bar\\]: /uri
 
@@ -11326,12 +12188,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: collapsed
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       [foo][]
 
@@ -11344,9 +12212,7 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: emphasis
                   children:
@@ -11354,6 +12220,14 @@ cases:
                       value: foo
                 - type: text
                   value: ' bar'
+              label: '*foo* bar'
+              identifier: '*foo* bar'
+              referenceType: collapsed
+        - type: definition
+          identifier: '*foo* bar'
+          label: '*foo* bar'
+          title: title
+          url: /url
     myst: |
       [*foo* bar][]
 
@@ -11366,12 +12240,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: Foo
+              label: Foo
+              identifier: foo
+              referenceType: collapsed
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       [Foo][]
 
@@ -11384,16 +12264,22 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
             - type: text
               value: |-
 
                 []
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       [foo] 
       []
@@ -11408,12 +12294,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       [foo]
 
@@ -11426,9 +12318,7 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: emphasis
                   children:
@@ -11436,6 +12326,14 @@ cases:
                       value: foo
                 - type: text
                   value: ' bar'
+              label: '*foo* bar'
+              identifier: '*foo* bar'
+              referenceType: shortcut
+        - type: definition
+          identifier: '*foo* bar'
+          label: '*foo* bar'
+          title: title
+          url: /url
     myst: |
       [*foo* bar]
 
@@ -11450,9 +12348,7 @@ cases:
           children:
             - type: text
               value: '['
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: emphasis
                   children:
@@ -11460,8 +12356,16 @@ cases:
                       value: foo
                 - type: text
                   value: ' bar'
+              label: '*foo* bar'
+              identifier: '*foo* bar'
+              referenceType: shortcut
             - type: text
               value: ']'
+        - type: definition
+          identifier: '*foo* bar'
+          label: '*foo* bar'
+          title: title
+          url: /url
     myst: |
       [[*foo* bar]]
 
@@ -11476,11 +12380,18 @@ cases:
           children:
             - type: text
               value: '[[bar '
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
     myst: |
       [[bar [foo]
 
@@ -11493,12 +12404,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: Foo
+              label: Foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       [Foo]
 
@@ -11511,13 +12428,20 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
             - type: text
               value: ' bar'
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url
     myst: |
       [foo] bar
 
@@ -11532,6 +12456,11 @@ cases:
           children:
             - type: text
               value: '[foo]'
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       \[foo]
 
@@ -11542,15 +12471,22 @@ cases:
     mdast:
       type: root
       children:
+        - type: definition
+          identifier: foo*
+          label: foo*
+          title: null
+          url: /url
         - type: paragraph
           children:
             - type: text
               value: '*'
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: foo*
+              label: foo*
+              identifier: foo*
+              referenceType: shortcut
     myst: |
       [foo*]: /url
 
@@ -11563,11 +12499,23 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url2
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: bar
+              identifier: bar
+              referenceType: full
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url1
+        - type: definition
+          identifier: bar
+          label: bar
+          title: null
+          url: /url2
     myst: |
       [foo][bar]
 
@@ -11581,11 +12529,18 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url1
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: collapsed
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url1
     myst: |
       [foo][]
 
@@ -11599,10 +12554,16 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: ''
               children:
                 - type: text
                   value: foo
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url1
     myst: |
       [foo]()
 
@@ -11615,13 +12576,20 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url1
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
             - type: text
               value: (not a link)
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url1
     myst: |
       [foo](not a link)
 
@@ -11636,11 +12604,18 @@ cases:
           children:
             - type: text
               value: '[foo]'
-            - type: link
-              url: /url
+            - type: linkReference
               children:
                 - type: text
                   value: bar
+              label: baz
+              identifier: baz
+              referenceType: full
+        - type: definition
+          identifier: baz
+          label: baz
+          title: null
+          url: /url
     myst: |
       [foo][bar][baz]
 
@@ -11653,16 +12628,30 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: link
-              url: /url2
+            - type: linkReference
               children:
                 - type: text
                   value: foo
-            - type: link
-              url: /url1
+              label: bar
+              identifier: bar
+              referenceType: full
+            - type: linkReference
               children:
                 - type: text
                   value: baz
+              label: baz
+              identifier: baz
+              referenceType: shortcut
+        - type: definition
+          identifier: baz
+          label: baz
+          title: null
+          url: /url1
+        - type: definition
+          identifier: bar
+          label: bar
+          title: null
+          url: /url2
     myst: |
       [foo][bar][baz]
 
@@ -11678,11 +12667,23 @@ cases:
           children:
             - type: text
               value: '[foo]'
-            - type: link
-              url: /url1
+            - type: linkReference
               children:
                 - type: text
                   value: bar
+              label: baz
+              identifier: baz
+              referenceType: full
+        - type: definition
+          identifier: baz
+          label: baz
+          title: null
+          url: /url1
+        - type: definition
+          identifier: foo
+          label: foo
+          title: null
+          url: /url2
     myst: |
       [foo][bar][baz]
 
@@ -11697,9 +12698,9 @@ cases:
         - type: paragraph
           children:
             - type: image
+              title: title
               url: /url
               alt: foo
-              title: title
     myst: |
       ![foo](/url "title")
     html: |-
@@ -11710,10 +12711,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: train.jpg
+            - type: imageReference
               alt: foo bar
-              title: train & tracks
+              label: foo *bar*
+              identifier: foo *bar*
+              referenceType: shortcut
+        - type: definition
+          identifier: foo *bar*
+          label: foo *bar*
+          title: train & tracks
+          url: train.jpg
     myst: |
       ![foo *bar*]
 
@@ -11727,6 +12734,7 @@ cases:
         - type: paragraph
           children:
             - type: image
+              title: null
               url: /url2
               alt: foo bar
     myst: |
@@ -11740,6 +12748,7 @@ cases:
         - type: paragraph
           children:
             - type: image
+              title: null
               url: /url2
               alt: foo bar
     myst: |
@@ -11752,10 +12761,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: train.jpg
+            - type: imageReference
               alt: foo bar
-              title: train & tracks
+              label: foo *bar*
+              identifier: foo *bar*
+              referenceType: collapsed
+        - type: definition
+          identifier: foo *bar*
+          label: foo *bar*
+          title: train & tracks
+          url: train.jpg
     myst: |
       ![foo *bar*][]
 
@@ -11768,10 +12783,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: train.jpg
+            - type: imageReference
               alt: foo bar
-              title: train & tracks
+              label: foobar
+              identifier: foobar
+              referenceType: full
+        - type: definition
+          identifier: foobar
+          label: FOOBAR
+          title: train & tracks
+          url: train.jpg
     myst: |
       ![foo *bar*][foobar]
 
@@ -11785,6 +12806,7 @@ cases:
         - type: paragraph
           children:
             - type: image
+              title: null
               url: train.jpg
               alt: foo
     myst: |
@@ -11800,9 +12822,9 @@ cases:
             - type: text
               value: 'My '
             - type: image
+              title: title
               url: /path/to/train.jpg
               alt: foo bar
-              title: title
     myst: |
       My ![foo bar](/path/to/train.jpg  "title"   )
     html: |-
@@ -11814,6 +12836,7 @@ cases:
         - type: paragraph
           children:
             - type: image
+              title: null
               url: url
               alt: foo
     myst: |
@@ -11827,7 +12850,9 @@ cases:
         - type: paragraph
           children:
             - type: image
+              title: null
               url: /url
+              alt: ''
     myst: |
       ![](/url)
     html: |-
@@ -11838,9 +12863,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: foo
+              label: bar
+              identifier: bar
+              referenceType: full
+        - type: definition
+          identifier: bar
+          label: bar
+          title: null
+          url: /url
     myst: |
       ![foo][bar]
 
@@ -11853,9 +12885,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: foo
+              label: bar
+              identifier: bar
+              referenceType: full
+        - type: definition
+          identifier: bar
+          label: BAR
+          title: null
+          url: /url
     myst: |
       ![foo][bar]
 
@@ -11868,10 +12907,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: foo
-              title: title
+              label: foo
+              identifier: foo
+              referenceType: collapsed
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       ![foo][]
 
@@ -11884,10 +12929,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: foo bar
-              title: title
+              label: '*foo* bar'
+              identifier: '*foo* bar'
+              referenceType: collapsed
+        - type: definition
+          identifier: '*foo* bar'
+          label: '*foo* bar'
+          title: title
+          url: /url
     myst: |
       ![*foo* bar][]
 
@@ -11900,10 +12951,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: Foo
-              title: title
+              label: Foo
+              identifier: foo
+              referenceType: collapsed
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       ![Foo][]
 
@@ -11916,14 +12973,20 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: foo
-              title: title
+              label: foo
+              identifier: foo
+              referenceType: shortcut
             - type: text
               value: |-
 
                 []
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       ![foo] 
       []
@@ -11938,10 +13001,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: foo
-              title: title
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       ![foo]
 
@@ -11954,10 +13023,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: foo bar
-              title: title
+              label: '*foo* bar'
+              identifier: '*foo* bar'
+              referenceType: shortcut
+        - type: definition
+          identifier: '*foo* bar'
+          label: '*foo* bar'
+          title: title
+          url: /url
     myst: |
       ![*foo* bar]
 
@@ -11989,10 +13064,16 @@ cases:
       children:
         - type: paragraph
           children:
-            - type: image
-              url: /url
+            - type: imageReference
               alt: Foo
-              title: title
+              label: Foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       ![Foo]
 
@@ -12007,6 +13088,11 @@ cases:
           children:
             - type: text
               value: '![foo]'
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       !\[foo]
 
@@ -12021,12 +13107,18 @@ cases:
           children:
             - type: text
               value: '!'
-            - type: link
-              url: /url
-              title: title
+            - type: linkReference
               children:
                 - type: text
                   value: foo
+              label: foo
+              identifier: foo
+              referenceType: shortcut
+        - type: definition
+          identifier: foo
+          label: foo
+          title: title
+          url: /url
     myst: |
       \![foo]
 
@@ -12040,6 +13132,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: http://foo.bar.baz
               children:
                 - type: text
@@ -12055,6 +13148,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: http://foo.bar.baz/test?q=hello&id=22&boolean
               children:
                 - type: text
@@ -12071,6 +13165,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: irc://foo.bar:2233/baz
               children:
                 - type: text
@@ -12086,6 +13181,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: MAILTO:FOO@BAR.BAZ
               children:
                 - type: text
@@ -12101,6 +13197,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: a+b+c:d
               children:
                 - type: text
@@ -12116,6 +13213,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: made-up-scheme://foo,bar
               children:
                 - type: text
@@ -12131,6 +13229,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: http://../
               children:
                 - type: text
@@ -12146,6 +13245,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: localhost:5001/foo
               children:
                 - type: text
@@ -12173,7 +13273,8 @@ cases:
         - type: paragraph
           children:
             - type: link
-              url: http://example.com/%5C%5B%5C
+              title: null
+              url: http://example.com/\[\
               children:
                 - type: text
                   value: http://example.com/\[\
@@ -12188,6 +13289,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: mailto:foo@bar.example.com
               children:
                 - type: text
@@ -12203,6 +13305,7 @@ cases:
         - type: paragraph
           children:
             - type: link
+              title: null
               url: mailto:foo+special@Bar.baz-bar0.com
               children:
                 - type: text
@@ -12731,7 +13834,9 @@ cases:
         - type: paragraph
           children:
             - type: inlineCode
-              value: code   span
+              value: |-
+                code  
+                span
     myst: |
       `code  
       span`
@@ -12744,7 +13849,9 @@ cases:
         - type: paragraph
           children:
             - type: inlineCode
-              value: code\ span
+              value: |-
+                code\
+                span
     myst: |
       `code\
       span`
