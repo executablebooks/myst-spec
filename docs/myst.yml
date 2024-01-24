@@ -7,20 +7,14 @@ project:
     content: CC-BY-4.0
   subject: Specification
   venue:
-    title: MyST
+    title: MyST Spec
 site:
   title: MyST Spec
-  projects:
-    - path: .
-      slug: spec
-  nav:
-    - title: MyST Spec
-      url: /spec
   actions:
     - title: GitHub
       url: https://github.com/executablebooks/myst-spec
   domains:
-    - spec.myst.tools
-  twitter: executablebooks
+    - mystmd-spec.curve.space
+  twitter: mystmarkdown
   logo: public/logo.svg
   logo_text: MyST Spec
